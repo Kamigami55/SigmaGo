@@ -1,0 +1,61 @@
+#PowerGrammar 1.0;
+!intention <guide_dog>;
+!modifier <guide_dog> : go_backward|stop|slow|go_right|go_left|go_toward;
+
+<guide_dog>:<go_backward>|
+    <stop>|
+    <slow>|
+    <go_right>|
+    <go_left>|
+    <go_toward>;
+//All rules
+<rotate>:轉|轉向;
+<toward>:向[著]|往|朝[著|向];
+<go>:走|移動|前進|行|進;
+<a_little_bit>:一些|一點|一會|一會兒|一些些|一點點|些|點;
+//All templates
+//All grammars
+//*C:退後嗎
+//*C:向後走一點
+//*C:往後
+//*C:往後走
+//*C:後退
+//*A:是的往後走
+//*A:會太快嗎
+//*A:會太慢嗎
+<go_backward>:[請往]|[我想要]|[可以][<toward>][往](後|後面|後方|退後)[<go>|退][<a_little_bit>]<{@=go_backward}>[嗎];
+//*C:停
+//*C:停下
+//*C:可以停嗎
+//*C:停下來
+//*A:我知道要停下了
+<stop>:[可以]|[給我][<stop>]停[下|下來|止|住|著]<{@=stop}>[嗎];
+//*C:不要那麼快
+//*C:慢一點
+//*C:走慢一點
+//*C:慢
+//*A:是的我會慢下
+<slow>:[請]|[我想要]|[可以]|[走](慢|不要那麼[一點|下來|慢來|緩速|快])[<a_little_bit>][嗎]|[好嗎]<{@=slow}>;
+//*C:往右邊走一點
+//*C:往右轉一點
+//*C:向右
+//*C:朝右邊走
+//*A:將往右轉
+//*A:右方無障礙
+//*A:需要放慢嗎
+<go_right>:[請往]|[可以]|[想要]|[向][<toward>](右|右邊|右手邊)[<rotate>|<go>][<a_little_bit>]<{@=go_right}>;
+//*C:左
+//*C:朝向左手邊走
+//*C:往左走
+//*C:左邊嗎
+//*A:好的將向左
+//*A:左方無障礙
+<go_left>:[向]|[請往]|[可以][<toward>][往](左|左邊|左手邊|左轉)[<rotate>|<go>][<a_little_bit>]<{@=go_left}>[嗎];
+//*C:前
+//*C:我要往前
+//*C:前進
+//*C:向前走
+//*C:往前走
+//*A:是的帶您往前走
+//*A:這速度可以嗎
+<go_toward>:[請]|[我要][<toward>][往]前[方|面][<go>][<a_little_bit>]<{@=go_toward}>[嗎];
