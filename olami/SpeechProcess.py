@@ -67,32 +67,32 @@ class SpeechProcess(Thread):
                     self.handler.sendMessage(msg)
                     time.sleep(0.5)
                     self.audioSrc.clearData() 
-                nlpResult = self.nlp.getNlpResult(self.audioSrc)
+                nlpResult = self.nlp.getNlpResult(self.audioSrc) #json about the specch from olami api
                 print(nlpResult)
                 data = nlpResult
                 #uart.RunRED()
                 if data != None:
                     if data[0]['type'] == 'guide_dog':
-                        data = data[0]['semantic'][0] ['modifier']
+                        data = data[0]['semantic'][0] ['modifier'] # analzye data and find the key word
                         print(data)
-                        if data == ['go_toward']:
+                        if data == ['go_toward']: # if the key word is go_toward then tell Arduino to go forward 
                             print('Got go_toward')
-                            sock.send('0')
-                        elif data == ['go_backward']:
+                            sock.send('0') #send a bit to arduino via bluetooth and controll it 
+                        elif data == ['go_backward']: # if the key word is go_backward then tell Arduino to go backward 
                             print('Got go_backward')
-                            sock.send('1')
-                        elif data == ['go_right']:
+                            sock.send('1') #send a bit to arduino via bluetooth and controll it 
+                        elif data == ['go_right']: # if the key word is go_right then tell Arduino to go right 
                             print('Got go_right')
-                            sock.send('2')
-                        elif data == ['go_left']:
+                            sock.send('2') #send a bit to arduino via bluetooth and controll it 
+                        elif data == ['go_left']: # if the key word is go_left then tell Arduino to go left
                             print('Got go_left')
-                            sock.send('3')
-                        elif data == ['slow']:
+                            sock.send('3') #send a bit to arduino via bluetooth and controll it 
+                        elif data == ['slow']: # if the key word is slow then tell Arduino to slow down 
                             print('Got slow')
-                            sock.send('4')
-                        elif data == ['stop']:
+                            sock.send('4') #send a bit to arduino via bluetooth and controll it 
+                        elif data == ['stop']: # if the key word is stop then tell Arduino to stop
                             print('Got stop')
-                            sock.send('5')
+                            sock.send('5') #send a bit to arduino via bluetooth and controll it 
                         else:
                             print('Not match anything')
                 else:
